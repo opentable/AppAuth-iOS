@@ -1,3 +1,28 @@
+# OpenTable Changes
+
+### Source/AppAuth/iOS/OIDExternalUserAgentIOS.m
+
+Setting `prefersEphemeralWebBrowserSession` to true for usage of ASWebAuthenticationSession on iOS 13.0+. This removes the iOS security alert before the login web view is displayed and, of course, makes the browser session ephemeral (not persisting cookies) . 
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+___
+
 ![AppAuth for iOS and macOS](https://rawgit.com/openid/AppAuth-iOS/master/appauth_lockup.svg)
 [![Build Status](https://travis-ci.org/openid/AppAuth-iOS.svg?branch=master)](https://travis-ci.org/openid/AppAuth-iOS)
 [![codecov](https://codecov.io/gh/openid/AppAuth-iOS/branch/master/graph/badge.svg)](https://codecov.io/gh/openid/AppAuth-iOS)
