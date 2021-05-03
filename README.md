@@ -3,7 +3,7 @@
 ### Source/AppAuth/iOS/OIDExternalUserAgentIOS.m
 - Setting `prefersEphemeralWebBrowserSession` to true for usage of ASWebAuthenticationSession on iOS 13.0+. This removes the iOS security alert before the login web view is displayed and, of course, makes the browser session ephemeral (not persisting cookies). This may not be necessary if we adopt a custom external user agent. 
 
-The motivation for this change is documented here: 
+- The motivation for this change is documented here: 
 https://opentable.atlassian.net/browse/RO-10584
 
 ### Package.swift
