@@ -1,19 +1,20 @@
 # OpenTable Changes
 
 ### Source/AppAuth/iOS/OIDExternalUserAgentIOS.m
+- Setting `prefersEphemeralWebBrowserSession` to true for usage of ASWebAuthenticationSession on iOS 13.0+. This removes the iOS security alert before the login web view is displayed and, of course, makes the browser session ephemeral (not persisting cookies). This may not be necessary if we adopt a custom external user agent. 
 
-Setting `prefersEphemeralWebBrowserSession` to true for usage of ASWebAuthenticationSession on iOS 13.0+. This removes the iOS security alert before the login web view is displayed and, of course, makes the browser session ephemeral (not persisting cookies) . 
+### Package.swift
+- Updated Package.swift with minimum deployment of iOS 9 (to prevent Xcode 12 warnings)
 
+### AppAuth.xcodeproj/project.pbxproj
+- Updated minimum deployment target to iOS 9 on iOS targets (to prevent Xcode 12 warnings)
 
+### Source/AppAuthCore/OIDServiceConfiguration.m 
+- Fixed crash when using decoding with support for NSSecureCoding
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+### Source/AppAuth/iOS/OIDExternalUserAgentIOS.h 
+- Fixed build error related to a nullability specifier
+
 <br/>
 <br/>
 <br/>
