@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
         tokenEndpoint:(NSURL *)tokenEndpoint
                issuer:(nullable NSURL *)issuer
  registrationEndpoint:(nullable NSURL *)registrationEndpoint
-   endSessionEndpoint:(nullable OIDServiceDiscovery *)endSessionEndpoint
+   endSessionEndpoint:(nullable NSURL *)endSessionEndpoint
     discoveryDocument:(nullable OIDServiceDiscovery *)discoveryDocument {
 
   self = [super init];
@@ -185,7 +185,11 @@ NS_ASSUME_NONNULL_BEGIN
     return nil;
   }
 
-  NSSet *discoveryClasses = [NSSet setWithObjects:[NSArray class], [OIDServiceDiscovery class], nil];
+  NSSet *discoveryClasses = [NSSet setWithObjects:[NSArray class],
+                             [NSNumber class],
+                             [NSString class],
+                             [OIDServiceDiscovery class],
+                             nil];
   OIDServiceDiscovery *discoveryDocument = [aDecoder decodeObjectOfClasses:discoveryClasses
                                                                     forKey:kDiscoveryDocumentKey];
 
