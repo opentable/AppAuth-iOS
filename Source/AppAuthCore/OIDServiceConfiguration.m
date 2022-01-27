@@ -186,8 +186,8 @@ NS_ASSUME_NONNULL_BEGIN
   }
 
   NSSet *discoveryClasses = [NSSet setWithObjects:[NSArray class],
-                             [NSString class],
-                             [OIDServiceDiscovery class],
+                            [NSString class],
+                            [OIDServiceDiscovery class],
                              nil];
   OIDServiceDiscovery *discoveryDocument = [aDecoder decodeObjectOfClasses:discoveryClasses
                                                                     forKey:kDiscoveryDocumentKey];
