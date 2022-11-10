@@ -6,15 +6,6 @@
 - The motivation for this change is documented here: 
 https://opentable.atlassian.net/browse/RO-10584
 
-### Package.swift
-- Updated Package.swift with minimum deployment of iOS 9 (to prevent Xcode 12 warnings)
-
-### AppAuth.xcodeproj/project.pbxproj
-- Updated minimum deployment target to iOS 9 on iOS targets (to prevent Xcode 12 warnings)
-
-### Source/AppAuthCore/OIDServiceConfiguration.m 
-- Fixed crash when using decoding with support for NSSecureCoding
-
 ### Source/AppAuth/iOS/OIDExternalUserAgentIOS.h 
 - Fixed build error related to a nullability specifier
 
