@@ -6,15 +6,6 @@
 - The motivation for this change is documented here: 
 https://opentable.atlassian.net/browse/RO-10584
 
-### Package.swift
-- Updated Package.swift with minimum deployment of iOS 9 (to prevent Xcode 12 warnings)
-
-### AppAuth.xcodeproj/project.pbxproj
-- Updated minimum deployment target to iOS 9 on iOS targets (to prevent Xcode 12 warnings)
-
-### Source/AppAuthCore/OIDServiceConfiguration.m 
-- Fixed crash when using decoding with support for NSSecureCoding
-
 ### Source/AppAuth/iOS/OIDExternalUserAgentIOS.h 
 - Fixed build error related to a nullability specifier
 
@@ -28,7 +19,7 @@ https://opentable.atlassian.net/browse/RO-10584
 ___
 
 ![AppAuth for iOS and macOS](https://rawgit.com/openid/AppAuth-iOS/master/appauth_lockup.svg)
-[![Build Status](https://travis-ci.org/openid/AppAuth-iOS.svg?branch=master)](https://travis-ci.org/openid/AppAuth-iOS)
+[![tests](https://github.com/openid/AppAuth-iOS/actions/workflows/tests.yml/badge.svg?event=push)](https://github.com/openid/AppAuth-iOS/actions/workflows/tests.yml)
 [![codecov](https://codecov.io/gh/openid/AppAuth-iOS/branch/master/graph/badge.svg)](https://codecov.io/gh/openid/AppAuth-iOS)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-brightgreen.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager)
@@ -660,24 +651,6 @@ try, or use as a reference for your own implementation. One of them,
 enables you to use a different browser for authentication, like Chrome for iOS
 or Firefox for iOS.
 
-##### CocoaPods
-Include the `EnterpriseUserAgent` subspec alongside any pods/subspecs you were already using, e.g.:
-```
-	pod 'AppAuth'
-	pod 'AppAuth/EnterpriseUserAgent'
-```
-
-Make sure to import `AppAuthEnterpriseUserAgent.h` in addition to `AppAuth.h` if you are using the full `AppAuth` functionality.
-
-##### Carthage
-Use the `AppAuthEnterpriseUserAgent` framework, which includes all the headers of the `AppAuth` framework.
-Make sure to import `<AppAuthEnterpriseUserAgent/AppAuthEnterpriseUserAgent.h>`. This includes all the files included by AppAuth/AppAuthCore, so only this import is necessary.
-
-##### Swift Package Manager
-Include the `AppAuthEnterpriseUserAgent` target alongside any targets you were already using.
-
-Make sure to import `AppAuthEnterpriseUserAgent.h` in addition to `AppAuth.h` if you are using the full `AppAuth` functionality.
-
 Here's how to configure AppAuth to use a custom browser using the
 `OIDExternalUserAgentIOSCustomBrowser` user agent:
 
@@ -697,9 +670,6 @@ First, add the following array to your
 This is required so that AppAuth can test for the browser and open the app store
 if it's not installed (the default behavior of this user-agent). You only need
 to include the URL scheme of the actual browser you intend to use.
-
-Next, make sure to import the correct header file.
-If using CocoaPods/Swift Package manager, make sure to import AppAuthEnterpriseUserAgent alongside AppAuth/AppAuthCore.
 
 <sub>Objective-C</sub>
 ```objc
