@@ -21,12 +21,12 @@
 #if SWIFT_PACKAGE
 @import AppAuthTV;
 #else
-#import "Source/AppAuthCore/OIDScopeUtilities.h"
-#import "Source/AppAuthCore/OIDURLQueryComponent.h"
-#import "Source/AppAuthTV/OIDTVAuthorizationRequest.h"
-#import "Source/AppAuthTV/OIDTVAuthorizationResponse.h"
-#import "Source/AppAuthTV/OIDTVServiceConfiguration.h"
-#import "Source/AppAuthTV/OIDTVTokenRequest.h"
+#import "Sources/AppAuthCore/OIDScopeUtilities.h"
+#import "Sources/AppAuthCore/OIDURLQueryComponent.h"
+#import "Sources/AppAuthTV/OIDTVAuthorizationRequest.h"
+#import "Sources/AppAuthTV/OIDTVAuthorizationResponse.h"
+#import "Sources/AppAuthTV/OIDTVServiceConfiguration.h"
+#import "Sources/AppAuthTV/OIDTVTokenRequest.h"
 #endif
 
 /*! @brief Test value for the @c deviceAuthorizationEndpoint property.
@@ -44,6 +44,14 @@ static NSString *const kTestAdditionalParameterKey = @"A";
 /*! @brief Test value for the @c additionalParameters property.
  */
 static NSString *const kTestAdditionalParameterValue = @"1";
+
+/*! @brief Test key for the @c additionalHeaders property.
+ */
+static NSString *const kTestAdditionalHeaderKey = @"B";
+
+/*! @brief Test value for the @c additionalHeaders property.
+ */
+static NSString *const kTestAdditionalHeaderValue = @"2";
 
 /*! @brief Test value for the @c clientID property.
  */
@@ -262,22 +270,26 @@ static int const kTestInterval = 5;
   XCTAssertEqualObjects(pollRequest.additionalParameters, @{});
 }
 
-/*! @brief Tests the @c tokenPollRequestWithAdditionalParameters method with one additional
-         parameter.
+/*! @brief Tests the @c testTokenPollRequestWithAdditionalParametersAdditionalHeaders method with one additional
+         parameter and one additional header.
  */
-- (void)testTokenPollRequestWithAdditionalParameters {
+- (void)testTokenPollRequestWithAdditionalParametersAdditionalHeaders {
   OIDTVAuthorizationResponse *testResponse = [self testAuthorizationResponse];
 
   NSDictionary<NSString *, NSString *> *testAdditionalParameters =
       @{kTestAdditionalParameterKey : kTestAdditionalParameterValue};
+  
+  NSDictionary<NSString *, NSString *> *testAdditionalHeaders =
+      @{kTestAdditionalHeaderKey : kTestAdditionalHeaderValue};
 
   OIDTVTokenRequest *pollRequest =
-      [testResponse tokenPollRequestWithAdditionalParameters:testAdditionalParameters];
+      [testResponse tokenPollRequestWithAdditionalParameters:testAdditionalParameters additionalHeaders:testAdditionalHeaders];
 
   XCTAssertEqualObjects(pollRequest.deviceCode, kTestDeviceCode);
   XCTAssertEqualObjects(pollRequest.clientID, kTestClientID);
   XCTAssertEqualObjects(pollRequest.clientSecret, kTestClientSecret);
   XCTAssertEqualObjects(pollRequest.additionalParameters, testAdditionalParameters);
+  XCTAssertEqualObjects(pollRequest.additionalHeaders, testAdditionalHeaders);
 }
 
 @end

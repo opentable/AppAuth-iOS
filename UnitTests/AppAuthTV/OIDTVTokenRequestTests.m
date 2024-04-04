@@ -21,11 +21,11 @@
 #if SWIFT_PACKAGE
 @import AppAuthTV;
 #else
-#import "Source/AppAuthCore/OIDScopeUtilities.h"
-#import "Source/AppAuthTV/OIDTVAuthorizationRequest.h"
-#import "Source/AppAuthTV/OIDTVAuthorizationResponse.h"
-#import "Source/AppAuthTV/OIDTVServiceConfiguration.h"
-#import "Source/AppAuthTV/OIDTVTokenRequest.h"
+#import "Sources/AppAuthCore/OIDScopeUtilities.h"
+#import "Sources/AppAuthTV/OIDTVAuthorizationRequest.h"
+#import "Sources/AppAuthTV/OIDTVAuthorizationResponse.h"
+#import "Sources/AppAuthTV/OIDTVServiceConfiguration.h"
+#import "Sources/AppAuthTV/OIDTVTokenRequest.h"
 #endif
 
 // Ignore warnings about "Use of GNU statement expression extension" which is
@@ -49,6 +49,14 @@ static NSString *const kTestAdditionalParameterKey = @"A";
 /*! @brief Test value for the @c additionalParameters property.
  */
 static NSString *const kTestAdditionalParameterValue = @"1";
+
+/*! @brief Test key for the @c additionalHeaders property.
+ */
+static NSString *const kTestAdditionalHeaderKey = @"B";
+
+/*! @brief Test value for the @c additionalHeaders property.
+ */
+static NSString *const kTestAdditionalHeaderValue = @"2";
 
 /*! @brief Test key for the @c clientID parameter in the HTTP request.
  */
@@ -121,7 +129,8 @@ static NSString *const kOIDTVDeviceTokenGrantType =
                  deviceCode:kDeviceCodeValue
                    clientID:kTestClientID
                clientSecret:kTestClientSecret
-       additionalParameters:@{kTestAdditionalParameterKey : kTestAdditionalParameterValue}];
+       additionalParameters:@{kTestAdditionalParameterKey : kTestAdditionalParameterValue}
+          additionalHeaders:@{kTestAdditionalHeaderKey : kTestAdditionalHeaderValue}];
 }
 
 /*! @brief Tests the initializer
@@ -139,6 +148,8 @@ static NSString *const kOIDTVDeviceTokenGrantType =
   XCTAssertEqualObjects(request.clientSecret, kTestClientSecret);
   XCTAssertEqualObjects(request.additionalParameters,
                         @{kTestAdditionalParameterKey:kTestAdditionalParameterValue});
+  XCTAssertEqualObjects(request.additionalHeaders,
+                        @{kTestAdditionalHeaderKey:kTestAdditionalHeaderValue});
 }
 
 /*! @brief Tests the @c NSCopying implementation by round-tripping an instance through the copying
